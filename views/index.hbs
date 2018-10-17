@@ -1,0 +1,12 @@
+{{#each dbArticle}}
+<div class="card cardHandler" style="width: 18rem;">
+    <img class="card-img-top" src="{{link}}" alt="Car Image">
+    <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text">{{summary}}</p>
+        <a href="#" id="open-modal" class="btn btn-primary">New Note</a>
+        <a href="#" class="btn btn-primary">Delete Note</a>
+
+    </div>
+</div>
+{{/each}}
