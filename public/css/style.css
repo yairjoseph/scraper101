@@ -22,7 +22,7 @@ body {
 }
 
 
-.modal-content, input, .btn, textarea, .note-submit{
+.modal-content, input, .btn, .note-submit{
     border-radius: 30px;
 }
 
@@ -47,4 +47,8 @@ body {
 
 .article {
     margin-bottom: 10px;
+}
+
+.noNoteCenter {
+    text-align: center;
 }

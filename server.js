@@ -98,7 +98,20 @@ app.get("/articles/:id", (req, res) => {
         })
 });
 
+app.get("/notes/:id", (req, res) => {
+    db.Article.findOne({ _id: req.params.id })
+        .then(dbArticle => {
+            // console.log(dbArticle.note)
+            db.Note.find({_id : dbArticle.note})
+            .then(dbNote => {
+                res.json(dbNote);
+            })
+        }).catch(err => {
+            res.json(err);
+        })
+});
 app.post("/articles/:id", (req, res) => {
+    // console.log(req.body)
 db.Note.create(req.body)
         .then(dbNote => {
             return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true })
