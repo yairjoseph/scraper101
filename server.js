@@ -1,5 +1,5 @@
 var express = require("express");
-var hbs = require("express-handlebars");
+var exphbs = require("express-handlebars");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
@@ -19,9 +19,15 @@ app.use(express.json());
 //Make public a static folder
 app.use(express.static("public"));
 
+var hbs = exphbs.create({
+    defaultLayout: "main", 
+    extname: ".hbs",
+    helpers: {}
+
+});
 // Set view engine
-app.engine('hbs', hbs({ defaultLayout: "main", extname: ".hbs" }));
-app.set('view engine', 'hbs');
+app.engine(hbs.extname, hbs.engine);
+app.set('view engine', hbs.extname);
 
 //connect to mongo db
 mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
@@ -87,7 +93,7 @@ app.get("/articles/:id", (req, res) => {
 });
 
 app.post("/articles/:id", (req, res) => {
-    db.Note.create(req.body)
+db.Note.create(req.body)
         .then(dbNote => {
             return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true })
         })
