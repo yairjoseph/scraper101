@@ -4,7 +4,7 @@
     <div class="card-body">
         <h5 class="card-title">{{title}}</h5>
         <p class="card-text">{{summary}}</p>
-        <a href="#" class="btn btn-primary new-note" data-id="{{_id}}">Make Note</a>
+        <a href="#" class="btn btn-primary new-note" data-id="{{_id}}">New Note</a>
         <a href="#" class="btn btn-primary show-note" data-id="{{_id}}">View Notes</a>
         <br>
     </div>
@@ -34,7 +34,7 @@
                         <br>
                         <textarea class="noteBody" rows="5" cols="40"></textarea>
                         <br>
-                        <input class="note-submit" type="submit" data-dismiss="modal" value="Submit">
+                        <input class="note-submit btn-primary" type="submit" data-dismiss="modal" value="Submit">
                     </div>
                 </form>
             </div>
@@ -60,7 +60,6 @@
                     Note:
                     <br>
                     <textarea class="noteBodyView" rows="5" cols="40"></textarea>
-
                 </div>
             </div>
             <div class="modal-footer">

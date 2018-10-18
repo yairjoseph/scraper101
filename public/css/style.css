@@ -11,8 +11,28 @@ body {
 
 .cardHandler {
     display: inline-block;
-    height: 450px;
+    height: 100%;
     width: 200px;
     overflow: auto;
     margin: 3% 3% 3% 3%;
+}
+
+
+.modal-content, input, .btn, textarea{
+    border-radius: 30px;
+}
+
+.jumbotron {
+    height: 250px;
+}
+
+.card-text {
+    height: 70px;
+}
+
+.card-img-top {
+    height: 200px;
+}
+.card-title {
+    height: 100px;
 }

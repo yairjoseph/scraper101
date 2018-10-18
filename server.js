@@ -23,7 +23,7 @@ if(process.env.MONGODB_URI){
     mongoose.connect(process.env.MONGODB_URI)
 }
 else {
-//connect to mongo db
+//connect to mongo db on local host
 mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
 }
 
