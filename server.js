@@ -19,13 +19,13 @@ app.use(express.json());
 //Make public a static folder
 app.use(express.static("public"));
 
-// if(process.env.MONGODB_URI){
-//     mongoose.connect(process.env.MONGODB_URI)
-// }
-// else {
+if(process.env.MONGODB_URI){
+    mongoose.connect(process.env.MONGODB_URI)
+}
+else {
 //connect to mongo db on local host
 mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
-// }
+}
 
 var hbs = exphbs.create({
     defaultLayout: "main", 

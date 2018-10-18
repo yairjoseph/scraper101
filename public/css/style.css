@@ -17,6 +17,8 @@ body {
     width: 200px;
     overflow: auto;
     margin: 3% 3% 3% 3%;
+    box-shadow: 10px 10px 5px rgb(42, 42, 42, 0.8);
+
 }
 
 
