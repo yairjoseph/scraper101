@@ -14,18 +14,18 @@ var app = express();
 app.use(logger("dev"));
 
 //Pare request body JSON
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //Make public a static folder
 app.use(express.static("public"));
 
-if(process.env.MONGODB_URI){
-    mongoose.connect(process.env.MONGODB_URI)
-}
-else {
+// if(process.env.MONGODB_URI){
+//     mongoose.connect(process.env.MONGODB_URI)
+// }
+// else {
 //connect to mongo db on local host
 mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
-}
+// }
 
 var hbs = exphbs.create({
     defaultLayout: "main", 
@@ -53,12 +53,15 @@ app.get("/scrape", function (req, res) {
     axios.get("https://carbuzz.com/news/").then(function (response) {
         //Load to cheerio
         var $ = cheerio.load(response.data);
-        console.log($)
+        // console.log($)
+        var main = "https://carbuzz.com";
         $(".feed-item").each((i, element) => {
             var result = {};
             result.title = $(element).children().children("div.cb-post-preview__right").find("a").text();
             result.link = $(element).children().children("div.cb-post-preview__image").find("img").attr("src");
             result.summary = $(element).children().children("div.cb-post-preview__right").find("div.cb-post-preview__subtitle").text();
+            result.article = main + $(element).children().children("div.cb-post-preview__right").find("a").attr("href");
+
             console.log(result);
 
             // console.log(db)
@@ -118,6 +121,6 @@ app.delete("/notes/:id", (req, res) => {
 
 
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
     console.log("App running on port " + PORT + "!");
 });

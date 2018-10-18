@@ -1,5 +1,7 @@
 body {
     background-image: url("/images/forest.jpg");
+    font-family: 'Playfair Display', serif;
+
 }
 
 .jumbotron {
@@ -18,7 +20,7 @@ body {
 }
 
 
-.modal-content, input, .btn, textarea{
+.modal-content, input, .btn, textarea, .note-submit{
     border-radius: 30px;
 }
 
@@ -36,3 +38,8 @@ body {
 .card-title {
     height: 100px;
 }
+
+.lead {
+    text-decoration: underline;
+}
+
