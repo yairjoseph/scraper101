@@ -71,7 +71,7 @@ app.get("/scrape", function (req, res) {
                     console.log(dbArticle);
                 })
                 .catch(err => {
-                    return res.json(err);
+                   console.log(err);
                 })
         })
         res.redirect("/")
