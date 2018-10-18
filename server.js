@@ -14,10 +14,18 @@ var app = express();
 app.use(logger("dev"));
 
 //Pare request body JSON
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //Make public a static folder
 app.use(express.static("public"));
+
+if(process.env.MONGODB_URI){
+    mongoose.connect(process.env.MONGODB_URI)
+}
+else {
+//connect to mongo db
+mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
+}
 
 var hbs = exphbs.create({
     defaultLayout: "main", 
@@ -28,11 +36,6 @@ var hbs = exphbs.create({
 // Set view engine
 app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
-
-//connect to mongo db
-mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
-
-
 //Routes
 
 app.get("/", (req, res) => {
